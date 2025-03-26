@@ -9,22 +9,37 @@ const addNewTask = () => {
         return;
     };
     myItensList.push({tarefa: input.value, concluida: false});
-    input.value = ""
+    input.value = "";
+    input.focus();
     showTask();
 };
 
+// const showTask = () => {
+//     let newLi = ``
+//     myItensList.forEach((item, index) => {
+//         newLi += `<li class="task ${item.concluida && "done"}">
+//                         <img src="./img/checked.png" alt="checked-image" onclick="doneTask(${index})">
+//                         <p>${item.tarefa}</p>
+//                         <img src="./img/trash.png" alt="trash-image" onclick="deleteItem(${index})">
+//                     </li>`
+//     });
+//     listTasks.innerHTML = newLi;
+//     localStorage.setItem("lista", JSON.stringify(myItensList));
+// }
+
 const showTask = () => {
-    let newLi = ``
-    myItensList.forEach((item, index) => {
-        newLi += `<li class="task ${item.concluida && "done"}">
-                        <img src="./img/checked.png" alt="checked-image" onclick="doneTask(${index})">
-                        <p>${item.tarefa}</p>
-                        <img src="./img/trash.png" alt="trash-image" onclick="deleteItem(${index})">
-                    </li>`
-    });
+    let newLi = myItensList.map((item, index) => 
+        `<li class="task ${item.concluida ? "done" : ""}">
+            <img src="./img/checked.png" alt="checked-image" onclick="doneTask(${index})">
+            <p>${item.tarefa}</p>
+            <img src="./img/trash.png" alt="trash-image" onclick="deleteItem(${index})">
+        </li>`
+    ).join('');
+
     listTasks.innerHTML = newLi;
     localStorage.setItem("lista", JSON.stringify(myItensList));
-}
+};
+
 
 const doneTask = (index) => {
     myItensList[index].concluida = !myItensList[index].concluida;
