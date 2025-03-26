@@ -45,7 +45,6 @@ const reloadTasks = () => {
     showTask();
 }
 
-
 reloadTasks();
 
 button.addEventListener("click", addNewTask)
