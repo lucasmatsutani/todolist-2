@@ -8,7 +8,6 @@ const addNewTask = () => {
     if (input.value.trim() === ""){
         return;
     };
-
     myItensList.push({tarefa: input.value, concluida: false});
     input.value = ""
     showTask();
